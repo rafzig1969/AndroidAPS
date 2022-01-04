@@ -95,13 +95,7 @@ fun onVersionNotDetectable() {
 }
 
 fun onNewVersionDetected(currentVersion: String, newVersion: String?) {
-    val now = System.currentTimeMillis()
-    if (now > SP.getLong(R.string.key_last_versionchecker_warning, 0) + WARN_EVERY) {
-        log.debug("Version ${currentVersion} outdated. Found $newVersion")
-        val notification = Notification(Notification.NEWVERSIONDETECTED, String.format(MainApp.gs(R.string.versionavailable), newVersion.toString()), Notification.LOW)
-        RxBus.send(EventNewNotification(notification))
-        SP.putLong(R.string.key_last_versionchecker_warning, now)
-    }
+    return
 }
 
 @Deprecated(replaceWith = ReplaceWith("numericVersionPart()"), message = "Will not work if RCs have another index number in it.")
