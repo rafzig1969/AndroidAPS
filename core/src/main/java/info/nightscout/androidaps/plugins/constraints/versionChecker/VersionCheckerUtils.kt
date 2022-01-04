@@ -106,13 +106,7 @@ class VersionCheckerUtils @Inject constructor(
     }
 
     private fun onNewVersionDetected(currentVersion: String, newVersion: String?) {
-        val now = System.currentTimeMillis()
-        if (now > sp.getLong(R.string.key_last_versionchecker_warning, 0) + WARN_EVERY) {
-            aapsLogger.debug(LTag.CORE, "Version $currentVersion outdated. Found $newVersion")
-            val notification = Notification(Notification.NEWVERSIONDETECTED, resourceHelper.gs(R.string.versionavailable, newVersion.toString()), Notification.LOW)
-            rxBus.send(EventNewNotification(notification))
-            sp.putLong(R.string.key_last_versionchecker_warning, now)
-        }
+        return
     }
 
     private fun String?.toNumberList() =
